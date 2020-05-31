@@ -1,0 +1,96 @@
+<ion-header style="background-color: greenyellow;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-outline" defaultHref="/">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+    </ion-buttons>
+    <ion-title style="font-size: 17px;"><b>Add Products</b></ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+<div>
+  <input type="hidden" name="Id" [(ngModel)]="currentshop.Id" #Id="ngModel"/>
+  <input type="hidden" name="AreaId" [(ngModel)]="currentshop.AreaId" #AreaId="ngModel"/>
+    <ion-card style="border: 1px solid;">
+      <ion-item>
+      <ion-card-title> <b>{{ currentshop.Name}}</b></ion-card-title>
+    </ion-item>
+    </ion-card>
+    <ion-card style="border: 1px solid;">
+    <ion-item>
+      <ion-label class="ion-text-wrap">Area : <b>{{currentshop.AreaName}}</b></ion-label>
+    </ion-item>
+  </ion-card>       
+    <ion-card style="border: 1px solid greenyellow;;">
+      <ion-item>
+       <b> Add Your Products </b>
+       <ion-button style="margin-left: 128px;" (click)="GetProducts()"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      </ion-item>
+      <div *ngFor="let item of products">
+        <div *ngIf="item.OrderStatus == 0"> 
+      <div style="height: 370px;
+      overflow: auto;">
+      <ion-card class="welcome-card" *ngFor="let product of item.products">
+        <ion-label hidden>{{product.Description}}</ion-label>
+        <ion-label hidden>{{product.Id}}</ion-label>
+      <ion-row>
+      <ion-col size="4">
+        <ion-card style="height: 70px;width: 70px;">
+          <img [src]="product.Path" style="height: 70px;width: 70px;" alt="../../assets/alt.jpg">
+        </ion-card>
+        </ion-col>
+        <ion-col size="8">
+          <ion-row>
+        <ion-label>
+            <ion-col>
+              <h2><b>{{product.Name}}</b></h2>
+            </ion-col>
+            </ion-label>
+          </ion-row>
+          <ion-row style="margin-top:-5px;">
+          <ion-col>
+           <ion-item>
+                 <ion-input style="border-bottom: 2px solid"  [(ngModel)]="product.Quantity" type="number" placeholder="Enter Quantity" name="Quantity"></ion-input>                   
+                 <ion-button (click)="Update(product.OrderDetailsId,product.Quantity)" color="warning" class="round-btn"><ion-icon name="create-outline"></ion-icon></ion-button>
+         </ion-item>
+         </ion-col>
+         </ion-row>
+         </ion-col>
+          </ion-row>
+      <ion-row style="background-color: snow;">
+        <!-- <ion-col>
+            <!-- <div style="font-size: 17px;
+            color: black;"><ion-label class="ion-text-wrap"><b>Price: {{product.Price}} </b></ion-label>
+          </div>
+        </ion-col> -->
+        <ion-col>
+            <div style="font-size: 18px;
+            color: green;">Total: <b>&#8360; {{product.Total}} </b></div>
+        </ion-col>  
+        <ion-col>
+          <ion-button (click)="delete(product.OrderDetailsId)" color="danger"  class="round-btn" style="height: 24px;float: right;">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-card> 
+     </div>
+      <ion-row>
+        <ion-col>
+          <ion-button  color="success" type="button" [disabled]="item.products.length == 0 || item.products == null" (click)="Order(item.OrderId,item.UserId)" 
+          expand="block" class="round-btn" >Order Now</ion-button>
+        </ion-col>
+      </ion-row>
+    
+    </div>
+
+    </div>
+  </ion-card>
+
+  
+</div>
+</ion-content>

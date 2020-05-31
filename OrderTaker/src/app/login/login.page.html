@@ -1,0 +1,41 @@
+<ion-content class="welcome-card"> 
+  <div class="welcome-card"  style="padding: 13px;
+  margin-top: 20%;border:1px solid whitesmoke;background-color: white;">
+      <div style="text-align: -webkit-center;">
+        <img src="../../assets/logo3.jpg" style="height: 200px;border-radius: 50%;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);width: 200px;"/>
+      </div>
+      <ion-card>
+     
+    <ion-item class="Apptitle" style="color: darkviolet;--ion-background-color: white;margin-top: 20px;">
+      <b>Punjab Masale <label style="font-size: 14px;color: tomato;">Login</label></b> 
+    </ion-item>
+    <form #loginForm="ngForm" (submit)="onSubmit(loginForm)" autocomplete="off" style="margin-top: 15px;">
+      <ion-card>
+      <ion-item>
+        <ion-input [(ngModel)]="login.UserName" required #UserName="ngModel" type="text" 
+        [class.is-invalid]="UserName.invalid && UserName.touched" placeholder="UserName"
+          name="UserName"></ion-input>
+         <ion-icon name="person-circle-outline" slot="end"></ion-icon>
+        <small class="text-danger" [class.d-none]="UserName.valid || UserName.untouched">UserName is required</small>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="login.Password" required #Password="ngModel" type="password" 
+        [class.is-invalid]="Password.invalid && Password.touched" placeholder="Password"
+        name="Password"></ion-input>
+        <ion-icon name="key" slot="end"></ion-icon>
+        <small class="text-danger" [class.d-none]="Password.valid || Password.untouched">please enter password</small>
+      </ion-item>
+    </ion-card>
+      <ion-row>
+        <ion-col>
+      <ion-button type="submit"  style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)" color="success" expand="block" class="round-btn" > 
+        SIGNIN
+      </ion-button>
+    </ion-col>
+    </ion-row>
+    </form>
+  </ion-card>
+  </div>
+  
+</ion-content>

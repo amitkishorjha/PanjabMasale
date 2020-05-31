@@ -1,0 +1,66 @@
+<ion-header style="background-color: greenyellow;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-outline" defaultHref="/">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+    </ion-buttons>
+    <ion-title style="font-size: 17px;"><b>Add Product</b></ion-title>
+    </ion-toolbar>
+</ion-header>
+  <ion-content>
+    <form #orderForm="ngForm" (submit)="onSubmit(orderForm)">
+      <input type="hidden" name="Id" [(ngModel)]="currentproduct.Id" #Id="ngModel"/>
+      <input type="hidden" name="Price" [(ngModel)]="currentproduct.Price" #Price="ngModel"/>
+      <ion-card style="border:1px solid green">
+        <ion-card-header>
+          <ion-card-title><b>{{currentproduct.Name}}</b></ion-card-title>
+        </ion-card-header>
+        
+        <ion-card style="border: 1px solid;">
+          <img [src]="currentproduct.Path" style="height: 200px;
+          width: 100%;" alt="../../assets/alt.jpg">
+      </ion-card>
+            <ion-card style="border: 1px solid;">
+              <ion-item>
+                <!-- <ion-label class="ion-text-wrap">
+        <b>Quantity:</b> {{product.Quantity}}</ion-label> -->
+        <ion-label class="ion-text-wrap">
+        <b>Price:</b> {{currentproduct.Price}} &#8360;</ion-label>
+      </ion-item>
+      </ion-card>
+      <ion-card style="border: 1px solid;"> 
+          <ion-item>
+              <b>Order Quantity : &nbsp;&nbsp;</b>
+              <!-- <ion-button (click)="minus()" color="success" class="round-btn" style="margin-right: 5px">-</ion-button>
+              <b>  -->
+              <ion-input style="border-bottom: 2px solid" [(ngModel)]="selectedQuantity" type="number" placeholder="Enter Quantity" name="selectedQuantity"></ion-input>
+               <!-- </b>                   
+              <ion-button (click)="plus()" color="success" class="round-btn"style="margin-left: 5px">+</ion-button> -->
+            
+        </ion-item>
+        </ion-card>
+      
+          <ion-card style="border: 1px solid greenyellow;;">
+            <ion-item style="font-size: 12px;">
+             <b> About product </b>
+            </ion-item>
+            <ion-item>
+          {{currentproduct.Description}}
+        </ion-item>
+        </ion-card>
+        
+      <ion-row>
+        <ion-col>
+          <ion-button  color="success" type="submit" expand="block" class="round-btn" >Add product</ion-button>
+        </ion-col>
+      </ion-row>
+    
+      </ion-card>
+    
+    </form>
+    </ion-content>
+    

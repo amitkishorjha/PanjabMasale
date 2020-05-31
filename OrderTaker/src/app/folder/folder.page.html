@@ -1,0 +1,70 @@
+<ion-header style="background-color: greenyellow;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar *ngIf="IssearchBarOpened"  autofocus showCancelButton="always" (search)="onSearch($event)"
+     (ionCancel)="IssearchBarOpened=false" animated ></ion-searchbar>
+    <ion-buttons slot="secondary"  *ngIf="!IssearchBarOpened">
+      <ion-button (click)="IssearchBarOpened=true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <ion-button (click)="refreshList($event)">
+        <ion-icon name="sync-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!IssearchBarOpened" style="font-size: 17px;"><b>Your Shops</b></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshList($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+<div class="welcome-card">  
+      <ion-row>
+    <ion-col class="col-6 col-md-4 col-xl-3" style="padding: 3px;" *ngFor="let item of shops_data">    
+      <ion-card  class="image-container" (click)="onCardClick(item)" style="margin: 1px;background-color: white;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);">
+        <label hidden>{{item.Id}}</label>
+        <label hidden>{{item.AreaId}}</label>
+        <div>
+          <ion-item>
+          <img src="../../assets/shop.jpg" style="height: 105px;width: fit-content;">
+        </ion-item>
+        </div>
+        <div style="background-color: oldlace;">
+        <ion-row>
+          <ion-col>
+        <b>{{item.AreaName}}</b>
+      </ion-col>
+      </ion-row>
+    </div>
+    <div style="background-color: aliceblue;">
+      <ion-row>
+        <ion-col>
+          <ion-label class="item-text-wrap">
+        <b style="font-size: 15px;
+        color: brown;">{{item.Name}}</b></ion-label>
+      </ion-col>
+      </ion-row>
+  </div>  
+  <div style="background-color: papayawhip;">
+    <ion-row>
+      <ion-col>
+        <b></b>
+    </ion-col>
+    </ion-row>
+  </div>  
+      </ion-card>
+    </ion-col>
+    </ion-row>
+</div> 
+</ion-grid>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "OrderTaker",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

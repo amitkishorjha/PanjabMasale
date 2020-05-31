@@ -1,0 +1,53 @@
+<ion-header style="background-color: greenyellow;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+          text=""
+          icon="arrow-back-outline" defaultHref="/add-product">
+    </ion-back-button>      
+    </ion-buttons>
+    <ion-searchbar *ngIf="IssearchBarOpened" autofocus showCancelButton="always" (search)="onSearch($event)"
+     (ionCancel)="IssearchBarOpened=false" animated></ion-searchbar>
+    <ion-buttons slot="secondary"  *ngIf="!IssearchBarOpened">
+      <ion-button (click)="IssearchBarOpened=true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+       <ion-button (click)="refreshList($event)">
+        <ion-icon name="sync-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!IssearchBarOpened" style="font-size: 17px;"><b>Our Products</b></ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-refresher slot="fixed" (ionRefresh)="refreshList($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+   <ion-grid>
+<div>
+      <ion-card class="welcome-card" *ngFor="let product of products" (click)="onCardClick(product)">
+        <ion-label hidden>{{product.Description}}</ion-label>
+        <ion-label hidden>{{product.Id}}</ion-label>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="product.Path" alt="../../assets/alt.jpg">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{product.Name}}</h2>
+          <h4></h4>
+        </ion-label>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+            <div><b>Price:</b> {{product.Price}} &#8360;</div>
+        </ion-col>  
+      </ion-row>
+      </ion-card> 
+</div>
+</ion-grid>
+</ion-content>
